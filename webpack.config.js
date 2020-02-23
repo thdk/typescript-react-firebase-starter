@@ -1,12 +1,16 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
     mode: "production",
+    entry: {
+        app: './src/index.tsx',
+    },
 
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
-
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".wasm", ".ts", ".tsx", ".mjs", ".cjs", ".js", ".json"],
@@ -14,7 +18,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: 'index_bundle.js'
+        filename: '[name].[contenthash].js',
     },
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
@@ -42,7 +46,10 @@ module.exports = {
         ]
     },
 
-    plugins: [new HtmlWebpackPlugin(
+    plugins: [
+        new webpack.ProgressPlugin(),
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin(
         {
             template: 'src/index.html'
         }
