@@ -1,3 +1,6 @@
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path');
+
 module.exports = {
     mode: "production",
 
@@ -7,6 +10,11 @@ module.exports = {
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".ts", ".tsx"]
+    },
+
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: 'index_bundle.js'
     },
 
     module: {
@@ -28,6 +36,12 @@ module.exports = {
             }
         ]
     },
+
+    plugins: [new HtmlWebpackPlugin(
+        {
+            template: 'src/index.html'
+        }
+    )],
 
     // When importing a module whose path matches one of the following, just
     // assume a corresponding global variable exists and use that instead.
