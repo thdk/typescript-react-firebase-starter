@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<DocumentFragment>
+  <h1>
+    Hello from 
+    <span
+      class="red"
+    >
+      compiler
+    </span>
+     and 
+    <span
+      class="green"
+    >
+      framework
+    </span>
+    !
+  </h1>
+</DocumentFragment>
+`;

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./style";
+import "./style.scss";
 
 export interface HelloProps { compiler: string; framework: string; }
 
