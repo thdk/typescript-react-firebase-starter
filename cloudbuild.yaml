@@ -1,10 +1,15 @@
 steps:
 - name: node
   entrypoint: npm
-  args: ['install']
+  args: ['ci']
 - name: node
   entrypoint: npm
   args: ['test']
 - name: node
   entrypoint: npm
   args: ['run', 'build']
+- name: node
+  entrypoint: npm
+  args: ['run', 'build-storybook']
+- name: gcr.io/cloud-builders/gsutil
+  args: ['-m', 'cp', '-r', 'storybook-static*', 'gs://test-project-271220_cloudbuild/storybook/$BRANCH_NAME']
